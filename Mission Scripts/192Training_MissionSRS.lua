@@ -20,13 +20,13 @@
 
 
 MISSIONSRS = {
-  fileName = "ServerLocalSettings.lua",                           -- name of file containing local server settings
+  fileName = "Config\serverSettings.lua",                           -- name of file containing local server settings
   LocalServerConfigPath = nil,                                    -- path to server srs settings. nil if file is in root of server's savedgames profile.
-  LocalServerConfigFile = "LocalServerSettings.txt",              -- srs server settings file name
+  LocalServerConfigFile = "dragon1.cfg",              -- srs server settings file name
   defaultSrsPath = "C:/Program Files/DCS-SimpleRadio-Standalone", -- default path to SRS install directory if setting file is not avaialable "C:/Program Files/DCS-SimpleRadio-Standalone"
-  defaultSrsPort = 5002,                                          -- default SRS port to use if settings file is not available
+  defaultSrsPort = 5010,                                          -- default SRS port to use if settings file is not available
   defaultText = "No Message Defined!",                            -- default message if text is nil
-  defaultFreqs = "243,251,327,377.8,30",                          -- transmit on guard, CTAF, NTTR TWR, NTTR BLACKJACK and 30FM as default frequencies
+  defaultFreqs = "243,357.775,30",                                -- transmit on guard, CTAF, TAD 1 and 30FM as default frequencies
   defaultModulations = "AM,AM,AM,AM,FM",                          -- default modulation (count *must* match qty of freqs)
   defaultVol = "1.0",                                             -- default to full volume
   defaultName = "Server",                                         -- default to server as sender

@@ -55,6 +55,30 @@ Range_VE91:Start()
 
 -- END VE91 Range
 
+-- BEGIN DT60 Range
+local strafepit_DT60_NORTH={"RANGE_DT60_strafepit_A",
+  "RANGE_DT60_strafepit_B"
+  }
+local strafepit_DT60_SOUTH={"RANGE_DT60_strafepit_C",
+  "RANGE_DT60_strafepit_D"
+  }
+local bombtarget_DT60={"RANGE_DT60_SOUTH_bombing", 
+  "RANGE_DT60_NORTH_bombing"
+  }
+
+Range_DT60 = RANGE:New("DT60 Range")
+fouldist_DT60AB = Range_DT60:GetFoullineDistance("RANGE_DT60_strafepit_A", "RANGE_DT60_FoulLine_AB")
+fouldist_DT60CD = Range_DT60:GetFoullineDistance("RANGE_DT60_strafepit_C", "RANGE_DT60_FoulLine_CD")
+Range_DT60:AddStrafePit(strafepit_DT60_NORTH, 3000, 300, nil, true, 20, fouldist_DT60AB)
+Range_DT60:AddStrafePit(strafepit_DT60_SOUTH, 3000, 300, nil, true, 20, fouldist_DT60CD)
+Range_DT60:AddBombingTargets(bombtarget_DT60, 50)
+Range_DT60:SetSoundfilesPath("Range Soundfiles/")
+--Range_DT60:SetInstructorRadio(RangeControlCommon)
+Range_DT60:SetRangeControl(250.500)
+Range_DT60:Start()
+
+-- END DT60 Range
+
 -- BEGIN WE00 Range
 local bombtarget_WE00 = {"WE00_lake-1",
   "WE00_lake-2",
@@ -111,6 +135,28 @@ Range_VE90:Start()
 
 -- END VE90 Range
 
+-- BEGIN DT60 Range
+
+local bombtarget_DT60AtTanf = {"RANGE_DT60_STATIC-1",
+  "RANGE_DT60_STATIC-2",
+  "RANGE_DT60_STATIC-3",
+  "RANGE_DT60_STATIC-4",
+  "RANGE_DT60_STATIC-5",
+  "RANGE_DT60_MOBILE-1",
+  "RANGE_DT60_MOBILE-2",
+  "RANGE_DT60_MOBILE-3",
+  "RANGE_DT60_MOBILE-4",
+  "RANGE_DT60_MOBILE-5"
+  }
+  
+Range_DT60AtTanf = RANGE:New("DT60-AtTanf Range")
+Range_DT60AtTanf:AddBombingTargets(bombtarget_DT60AtTanf, 50)
+Range_DT60AtTanf:SetSoundfilesPath("Range Soundfiles/")
+--Range_WE00:SetInstructorRadio(RangeControlCommon)
+Range_DT60AtTanf:SetRangeControl(250.600)
+Range_DT60AtTanf:Start()
+
+-- END DT60 Range
 
 -- BEGIN xx Range
 -- END xx Range

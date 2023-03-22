@@ -1,0 +1,283 @@
+env.info("RAT Loading", false)
+
+-- Defines parameter for both RAT:_Debug() and RAT:ATC_Messages()
+local debug = false
+
+local excludedAirfields = {"Deir ez_Zor", "Palmyra", "Mezzeh"}
+
+-- Spawns a single aircraft using a random template and livery, with various optional parameters.
+local function SpawnRATGroup(alias, coalition, templates, departureNames, destinationNames, terminalType, minDist, maxDist, maxFL)
+
+   local template = templates[math.random(#templates)]
+   local templateName = template["name"]
+
+   --env.info("alias="..alias.."; template="..templateName.."; skin="..livery)
+
+   local ratGrp = RAT:New(templateName, alias)
+
+   -- Use skin if available
+   if (template["skins"] ~= nil) then
+      local livery = template["skins"][math.random(#template["skins"])]
+      
+      if (livery ~= nil) then
+         --env.info("")
+         ratGrp:Livery(livery)
+      end
+   end
+   
+   -- Hard-coded parameters
+   ratGrp:ExcludedAirports(excludedAirfields)
+   ratGrp:_Debug(debug)
+   ratGrp:EnableATC(true)
+   ratGrp:ATC_Messages(debug)
+   ratGrp:SetCoalition(coalition)
+   ratGrp:CheckOnRunway(true, 75)
+   ratGrp:CheckOnTop(true, 2)
+   ratGrp:RespawnAfterCrashON()
+   ratGrp:RespawnInAirAllowed(true)
+   ratGrp:SetEPLRS(true) 
+   ratGrp:PlaceMarkers(false)
+   --ratGrp:SetTakeoff("cold")
+   ratGrp:TimeDestroyInactive(300)
+   
+   -- Optional parameters
+   if (departureNames ~= nil) then
+      ratGrp:SetDeparture(departureNames)
+   end
+   
+   if (destinationNames ~= nil) then
+      ratGrp:SetDestination(destinationNames)
+   end
+   
+   if (terminalType ~= nil) then
+      ratGrp:SetTerminalType(terminalType)
+   end
+   
+   if (minDist ~= nil) then
+      ratGrp:SetMinDistance(minDist)
+   end
+   
+   if (maxDist ~= nil) then
+      ratGrp:SetMaxDistance(maxDist)
+   end
+   
+   if (maxFL ~= nil) then
+      ratGrp:SetFLmax(maxFL)
+   end
+
+   ratGrp:Spawn()
+   
+end
+
+-- Spawns the specified number of aircraft based on provided parameters.
+local function SetupRATGroup(alias, coalition, templates, departureNames, destinationNames, terminalType, minDist, maxDist, maxFL, spawnCnt)
+
+   for i = 1, spawnCnt, 1 do
+      -- alias must be unique for each spawn
+      local uniqueAlias = alias.."#"..i
+      SpawnRATGroup(uniqueAlias, coalition, templates, departureNames, destinationNames, terminalType, minDist, maxDist, maxFL)
+   end
+end
+
+
+-- ********************************************************************************
+-- CIVILIAN LARGE TRANSPORTS   
+-- ********************************************************************************
+local civLargeTemplates = 
+{
+   {name="RAT_GREY_A-320", skins={"Air Berlin", "Alitalia", "American Airlines", "Delta Airlines", "Emirates", "Frontier", "Kuwait Airways", "Qatar", "United", "British Airways"}},
+   {name="RAT_GREY_A-330", skins={"BOURKHAN", "DELTA", "Egypt Air", "Emirates", "GulfAir", "IRoI", "OmanAir", "Qatar", "Turkish Airlines", "US Airways"}},
+   {name="RAT_GREY_A-380", skins={"Air France", "BA", "China Southern", "Emirates", "KA", "LH", "LHF", "Qantas Airways", "QTR", "SA", "TA"}},
+   {name="RAT_GREY_B-727", skins={"Air France", "Alitalia", "American Airlines", "Delta Airlines", "Hapag Lloyd", "Lufthansa", "Northwest", "Singapore Airlines", "Southwest", "UNITED", "ZERO G"}},
+   {name="RAT_GREY_B-737", skins={"Air Algerie", "Air Berlin", "Air France", "airBaltic", "Airzena", "AM", "American_Airlines", "British Airways", "C40s", "Disney", "EA", "easyjet", "FINNAIR", "Jet2", "kulula", "Lufthansa BA", "OMAN AIR", "Polskie Linie Lotnicze LOT", "QANTAS", "RYANAIR", "TNT", "UPS"}},
+   {name="RAT_GREY_B-747", skins={"AF", "AF-One", "AI", "CP", "KLM", "LH", "QA", "TA"}},
+   {name="RAT_GREY_B-757", skins={"AA", "BA", "C-32", "Delta", "DHL", "easyJet", "Swiss", "Thomson"}},
+   {name="RAT_GREY_DC-10", skins={"SWISSAIR HB-IHL"}},
+   {name="RAT_GREY_Yak-40", skins=nil},
+}
+
+SetupRATGroup(
+   "Civilian Large Alias",
+   "neutral", -- coalition
+   civLargeTemplates, -- templates
+   {"RAT_WEST","RAT_NORTH", "RAT_SOUTH"}, -- departures
+   {"Beirut-Rafic Hariri", "Adana Sakirpasa", "Gaziantep", "Damascus", "Aleppo", "Larnaca", "Paphos"}, -- destinations
+   nil, -- terminal types
+   100, -- min distance
+   nil, -- max distance
+   nil, -- max FL
+   2 -- spawn count
+)
+
+SetupRATGroup(
+   "Civilian Beirut Alias",
+   "neutral", -- coalition
+   civLargeTemplates, -- templates
+   {"Beirut-Rafic Hariri"}, -- departures
+   {"RAT_WEST","RAT_NORTH", "RAT_SOUTH", "Adana Sakirpasa", "Gaziantep", "Damascus", "Aleppo", "Larnaca", "Paphos"}, -- destinations
+   nil, -- terminal types
+   100, -- min distance
+   nil, -- max distance
+   nil, -- max FL
+   2 -- spawn count
+)
+
+-- ********************************************************************************
+-- CIVILIAN SMALL TRANSPORTS   
+-- ********************************************************************************
+local civSmallTemplates = 
+{
+   {name="RAT_GREY_Cessna-P210", skins={"D-EKVW", "Muster", "N9672H", "SEagle_blue", "SEagle_red", "V5-BUG", "VH-JGA"}},
+   {name="RAT_GREY_Yak-52", skins=nil},
+   {name="RAT_GREY_Yak-40", skins=nil},
+   {name="RAT_GREY_P51D", skins=nil},
+}
+
+SetupRATGroup(
+   "Civilian Small Alias",
+   "neutral", -- coalition
+   civSmallTemplates, -- templates
+   {"Kingsfield", "Ercan", "Lakatamia", "Gecitkale", "Pinarbashi", "Gazipasa", "Gaziantep", "Sanliurfa", "Adana Sakirpasa", "Aleppo", "Kiryat Shmona", "Eyn Shemer", "Megiddo", "Wujah Al Hajar", "Haifa", "Hatay"}, -- departures
+   {"Kingsfield", "Ercan", "Lakatamia", "Gecitkale", "Pinarbashi", "Gazipasa", "Gaziantep", "Sanliurfa", "Adana Sakirpasa", "Aleppo", "Kiryat Shmona", "Eyn Shemer", "Megiddo", "Wujah Al Hajar", "Haifa", "Hatay"}, -- destinations
+   nil, -- terminal types
+   nil, -- min distance
+   241, -- max distance
+   80, -- max FL
+   2 -- spawn count
+)
+
+-- ********************************************************************************
+-- RED LARGE TRANSPORTS   
+-- ********************************************************************************
+local redLargeTransportTemplates = 
+{ 
+   {name="RAT_RED_AN-26B", skins=nil},
+   {name="RAT_RED_AN-30M", skins=nil},
+   {name="RAT_RED_IL-76MD", skins=nil},
+   {name="RAT_RED_TU-95MS", skins=nil},
+   {name="RAT_RED_TU-160", skins=nil},
+   {name="RAT_RED_H-6J", skins=nil},
+}
+
+SetupRATGroup(
+   "Red Large Transport Alias",
+   "sameonly", -- coalition
+   redLargeTransportTemplates, -- templates
+   nil, -- departures
+   nil, -- destinations
+   AIRBASE.TerminalType.OpenBig, -- terminal types
+   50, -- min distance
+   nil, -- max distance
+   nil, -- max FL
+   5 -- spawn count
+)
+
+-- ********************************************************************************
+-- RED HELICOPTERS
+-- ********************************************************************************
+local redHeloTemplates = 
+{ 
+   {name="RAT_RED_HELO_MI-24V", skins=nil},
+   {name="RAT_RED_HELO_KA-50", skins=nil},
+   {name="RAT_RED_HELO_MI-8", skins=nil},
+}
+
+SetupRATGroup(
+   "Red Helo Alias",
+   "sameonly", -- coalition
+   redHeloTemplates, -- templates
+   nil, -- departures
+   nil, -- destinations
+   AIRBASE.TerminalType.HelicopterUsable, -- terminal types
+   75, -- min distance
+   190, -- max distance
+   nil, -- max FL
+   5 -- spawn count
+)
+
+-- ********************************************************************************
+-- BLUE HELICOPTERS
+-- ********************************************************************************
+local blueHeloTemplates = 
+{ 
+   {name="RAT_BLUE_HELO_CH-47D", skins=nil},
+   {name="RAT_BLUE_HELO_CH-53", skins=nil},
+   {name="RAT_BLUE_HELO_UH-60A", skins=nil},
+   {name="RAT_BLUE_HELO_AH-64A", skins=nil},
+}
+
+SetupRATGroup(
+   "Blue Helo Alias",
+   "sameonly", -- coalition
+   blueHeloTemplates, -- templates
+   nil, -- departures
+   nil, -- destinations
+   AIRBASE.TerminalType.HelicopterUsable, -- terminal types
+   50, -- min distance
+   190, -- max distance
+   nil, -- max FL
+   2 -- spawn count
+)
+
+-- ********************************************************************************
+-- BLUE LARGE TRANSPORTS
+-- ********************************************************************************
+local blueLargeTransportTemplates = 
+{ 
+   {name="RAT_BLUE_A400M", skins=nil},
+   {name="RAT_BLUE_V-22", skins=nil},
+   {name="RAT_BLUE_C-17A", skins=nil},
+   {name="RAT_BLUE_C-2A", skins=nil},
+   {name="RAT_BLUE_C-5", skins=nil},
+   {name="RAT_BLUE_P-3C", skins=nil},
+}
+
+SetupRATGroup(
+   "Blue Large Airbase Alias",
+   "sameonly", -- coalition
+   blueLargeTransportTemplates, -- templates
+   {"Ramat David","Akrotiri"}, -- departures
+   nil, -- destinations
+   AIRBASE.TerminalType.OpenBig, -- terminal types
+   50, -- min distance
+   nil, -- max distance
+   nil, -- max FL
+   2 -- spawn count
+)
+
+SetupRATGroup(
+   "Blue Large Transport Alias",
+   "sameonly", -- coalition
+   blueLargeTransportTemplates, -- templates
+   {"RAT_WEST","RAT_NORTH", "RAT_SOUTH"}, -- departures
+   nil, -- destinations
+   AIRBASE.TerminalType.OpenBig, -- terminal types
+   50, -- min distance
+   nil, -- max distance
+   nil, -- max FL
+   2 -- spawn count
+)
+
+-- ********************************************************************************
+-- BLUE CARRIER TRANSPORT
+-- ********************************************************************************
+local blueCarrierTemplates = 
+{ 
+   {name="RAT_BLUE_C-2A", skins=nil},
+   {name="RAT_BLUE_HELO_CH-53", skins=nil},
+}
+
+SetupRATGroup(
+   "Blue Carrier Transport Alias",
+   "sameonly", -- coalition
+   blueCarrierTemplates, -- templates
+   {"RAT_WEST","RAT_NORTH", "RAT_SOUTH", "Ramat David","Akrotiri"}, -- departures
+   {"CVN-72 A. Lincoln","LHA-1 Tarawa"}, -- destinations
+   AIRBASE.TerminalType.OpenMedOrBig, -- terminal types
+   nil, -- min distance
+   nil, -- max distance
+   nil, -- max FL
+   2 -- spawn count
+)
+   
+env.info("RAT Complete", false)
