@@ -1,7 +1,7 @@
 env.info("swapr loading", false)
 --- ===================================== SWAPR CONFIG =====================================
 
-  local SWAPR_Prefixes = { "_Client", "Ramat", "Akrotiri"}  -- Add all the relevant client prefixes / suffixes to this table
+  local SWAPR_Prefixes = { "_Client", "Ramat", "Akrotiri", "Tiyas"}  -- Add all the relevant client prefixes / suffixes to this table
   
   local Game_Mode = "MP" -- Must be set to either "SP" or "MP".  If set to "MP", server hook is required!
   

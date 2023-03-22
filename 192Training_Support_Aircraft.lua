@@ -8,7 +8,7 @@ SPAWN:New('blueEWR_AWACS_MAGIC'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeat
 --SPAWN:New('AWACS_BEAR'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnEngineShutDown()
 
 ------------------
--- TANKER START --
+-- TANKER SPAWN --
 ------------------
 
 local Tanker_KC135MPRS_Shell1 = SPAWN
@@ -83,4 +83,5 @@ local Tanker_C130_Arco2 = SPAWN
      end 
      )
 ]]--
+
 env.info("Support Aircraft Complete", false)
