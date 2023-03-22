@@ -85,7 +85,7 @@ RedLgTransportRAT:SetEPLRS(true) --If true (or nil), turn EPLRS on.
 RedLgTransportRAT:PlaceMarkers(false)
 --RedLgTransportRAT:SetTakeoff("cold") --Type can be "takeoff-cold" or "cold", "takeoff-hot" or "hot", "takeoff-runway" or "runway", "air".
 RedLgTransportRAT:TimeDestroyInactive(300) --Time in seconds. Default is 600 seconds = 10 minutes. Minimum is 60 seconds.
-RedLgTransportRAT:Spawn(5)
+RedLgTransportRAT:Spawn(2)
 
 --////RedHelos
 local RedHelos = RAT:New("RAT_RED_HELO_Template", "Red Helo") --yak1:RAT("RAT_YAK") will create a RAT object called "yak1". The template group in the mission editor must have the name "RAT_YAK".
@@ -105,7 +105,7 @@ RedHelos:SetEPLRS(true) --If true (or nil), turn EPLRS on.
 RedHelos:PlaceMarkers(false)
 --RedHelos:SetTakeoff("cold") --Type can be "takeoff-cold" or "cold", "takeoff-hot" or "hot", "takeoff-runway" or "runway", "air".
 RedHelos:TimeDestroyInactive(300) --Time in seconds. Default is 600 seconds = 10 minutes. Minimum is 60 seconds.
-RedHelos:Spawn(5)
+RedHelos:Spawn(2)
 
 --////blueHelos
 local BlueHelos = RAT:New("RAT_BLUE_HELO_Template", "Blue Helo") --yak1:RAT("RAT_YAK") will create a RAT object called "yak1". The template group in the mission editor must have the name "RAT_YAK".
@@ -175,7 +175,7 @@ BlueLgTransportRAT2:TimeDestroyInactive(300) --Time in seconds. Default is 600 s
 BlueLgTransportRAT2:Spawn(2)
 
 --////BlueCarrier
-local BlueCarrierRAT = RAT:New("RAT_BLUE_Template", "Blue Carrier Transport") --yak1:RAT("RAT_YAK") will create a RAT object called "yak1". The template group in the mission editor must have the name "RAT_YAK".
+local BlueCarrierRAT = RAT:New("RAT_BLUE_Carrier", "Blue Carrier Transport") --yak1:RAT("RAT_YAK") will create a RAT object called "yak1". The template group in the mission editor must have the name "RAT_YAK".
 BlueCarrierRAT:InitRandomizeTemplate(BlueCarrierTemplate)
 BlueCarrierRAT:SetTerminalType(AIRBASE.TerminalType.OpenMedOrBig)
 BlueCarrierRAT:ExcludedAirports(ExcludedAirfields)
