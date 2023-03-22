@@ -17,7 +17,7 @@ a380:Livery(a380skins)
 chessna:Livery(cessnaskins)
 ]]--
 
-ExcludedAirfields = {"Deir ez_Zor"}
+ExcludedAirfields = {"Deir ez_Zor", "Palmyra"}
 
 RedLgTansportsTemplate = { "RAT_RED_AN-26B", 
            "RAT_RED_AN-30M",
