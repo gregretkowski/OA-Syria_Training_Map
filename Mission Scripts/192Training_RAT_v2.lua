@@ -85,19 +85,19 @@ end
 -- ********************************************************************************
 local civLargeTemplates = 
 {
-   {name="RAT_GREY_A-320", skins={"Air Berlin", "Alitalia", "American Airlines", "Delta Airlines", "Emirates", "Frontier", "Kuwait Airways", "Qatar", "United", "British Airways"}},
-   {name="RAT_GREY_A-330", skins={"BOURKHAN", "DELTA", "Egypt Air", "Emirates", "GulfAir", "IRoI", "OmanAir", "Qatar", "Turkish Airlines", "US Airways"}},
-   {name="RAT_GREY_A-380", skins={"Air France", "BA", "China Southern", "Emirates", "KA", "LH", "LHF", "Qantas Airways", "QTR", "SA", "TA"}},
-   {name="RAT_GREY_B-727", skins={"Air France", "Alitalia", "American Airlines", "Delta Airlines", "Hapag Lloyd", "Lufthansa", "Northwest", "Singapore Airlines", "Southwest", "UNITED", "ZERO G"}},
-   {name="RAT_GREY_B-737", skins={"Air Algerie", "Air Berlin", "Air France", "airBaltic", "Airzena", "AM", "American_Airlines", "British Airways", "C40s", "Disney", "EA", "easyjet", "FINNAIR", "Jet2", "kulula", "Lufthansa BA", "OMAN AIR", "Polskie Linie Lotnicze LOT", "QANTAS", "RYANAIR", "TNT", "UPS"}},
-   {name="RAT_GREY_B-747", skins={"AF", "AF-One", "AI", "CP", "KLM", "LH", "QA", "TA"}},
-   {name="RAT_GREY_B-757", skins={"AA", "BA", "C-32", "Delta", "DHL", "easyJet", "Swiss", "Thomson"}},
-   {name="RAT_GREY_DC-10", skins={"SWISSAIR HB-IHL"}},
-   {name="RAT_GREY_Yak-40", skins=nil},
+   {name="RAT_GREY_A-320", skins={"Air Berlin", "Alitalia", "American Airlines", "Delta Airlines", "Emirates", "Frontier", "Kuwait Airways", "Qatar", "United", "British Airways"}}, --RAT_GREY_A-320
+   {name="RAT_GREY_A-330", skins={"BOURKHAN", "DELTA", "Egypt Air", "Emirates", "GulfAir", "IRoI", "OmanAir", "Qatar", "Turkish Airlines", "US Airways"}}, --RAT_GREY_A-330
+   {name="RAT_GREY_A-380", skins={"Air France", "BA", "China Southern", "Emirates", "KA", "LH", "LHF", "Qantas Airways", "QTR", "SA", "TA"}}, --RAT_GREY_A-380
+   {name="RAT_GREY_B-727", skins={"Air France", "Alitalia", "American Airlines", "Delta Airlines", "Hapag Lloyd", "Lufthansa", "Northwest", "Singapore Airlines", "Southwest", "UNITED", "ZERO G"}}, --RAT_GREY_B-727
+   {name="RAT_GREY_B-737", skins={"Air Algerie", "Air Berlin", "Air France", "airBaltic", "Airzena", "AM", "American_Airlines", "British Airways", "C40s", "Disney", "EA", "easyjet", "FINNAIR", "Jet2", "kulula", "Lufthansa BA", "OMAN AIR", "Polskie Linie Lotnicze LOT", "QANTAS", "RYANAIR", "TNT", "UPS"}}, --RAT_GREY_B-737
+   {name="RAT_GREY_B-747", skins={"AF", "AF-One", "AI", "CP", "KLM", "LH", "QA", "TA"}}, --RAT_GREY_B-747
+   {name="RAT_GREY_B-757", skins={"AA", "BA", "C-32", "Delta", "DHL", "easyJet", "Swiss", "Thomson"}}, --RAT_GREY_B-757
+   {name="RAT_GREY_DC-10", skins={"SWISSAIR HB-IHL"}}, --RAT_GREY_DC-10
+   {name="RAT_GREY_Yak-40", skins=nil}, --RAT_GREY_Yak-40
 }
 
 SetupRATGroup(
-   "Civilian Large Alias",
+   "Civilian Large Alias @IFF:1203",
    "neutral", -- coalition
    civLargeTemplates, -- templates
    {"RAT_WEST","RAT_NORTH", "RAT_SOUTH"}, -- departures
@@ -110,7 +110,7 @@ SetupRATGroup(
 )
 
 SetupRATGroup(
-   "Civilian Beirut Alias",
+   "Civilian Beirut Alias @IFF:1202",
    "neutral", -- coalition
    civLargeTemplates, -- templates
    {"Beirut-Rafic Hariri"}, -- departures
@@ -127,14 +127,14 @@ SetupRATGroup(
 -- ********************************************************************************
 local civSmallTemplates = 
 {
-   {name="RAT_GREY_Cessna-P210", skins={"D-EKVW", "Muster", "N9672H", "SEagle_blue", "SEagle_red", "V5-BUG", "VH-JGA"}},
-   {name="RAT_GREY_Yak-52", skins=nil},
-   {name="RAT_GREY_Yak-40", skins=nil},
-   {name="RAT_GREY_P51D", skins=nil},
+   {name="RAT_GREY_Cessna-P210", skins={"D-EKVW", "Muster", "N9672H", "SEagle_blue", "SEagle_red", "V5-BUG", "VH-JGA"}}, --RAT_GREY_Cessna-P210
+   {name="RAT_GREY_Yak-52", skins=nil}, --RAT_GREY_Yak-52
+   {name="RAT_GREY_Yak-40", skins=nil}, --RAT_GREY_Yak-40
+   {name="RAT_GREY_P51D", skins=nil}, --RAT_GREY_P51D
 }
 
 SetupRATGroup(
-   "Civilian Small Alias",
+   "Civilian Small Alias @IFF:1201",
    "neutral", -- coalition
    civSmallTemplates, -- templates
    {"Kingsfield", "Ercan", "Lakatamia", "Gecitkale", "Pinarbashi", "Gazipasa", "Gaziantep", "Sanliurfa", "Adana Sakirpasa", "Aleppo", "Kiryat Shmona", "Eyn Shemer", "Megiddo", "Wujah Al Hajar", "Haifa", "Hatay"}, -- departures
@@ -200,14 +200,14 @@ SetupRATGroup(
 -- ********************************************************************************
 local blueHeloTemplates = 
 { 
-   {name="RAT_BLUE_HELO_CH-47D", skins=nil},
-   {name="RAT_BLUE_HELO_CH-53", skins=nil},
-   {name="RAT_BLUE_HELO_UH-60A", skins=nil},
-   {name="RAT_BLUE_HELO_AH-64A", skins=nil},
+   {name="RAT_BLUE_HELO_CH-47D", skins=nil}, --RAT_BLUE_HELO_CH-47D
+   {name="RAT_BLUE_HELO_CH-53", skins=nil}, --RAT_BLUE_HELO_CH-53
+   {name="RAT_BLUE_HELO_UH-60A", skins=nil}, --RAT_BLUE_HELO_UH-60A
+   {name="RAT_BLUE_HELO_AH-64A", skins=nil}, --RAT_BLUE_HELO_AH-64A
 }
 
 SetupRATGroup(
-   "Blue Helo Alias",
+   "Blue Helo Alias @IFF:(12)5004",
    "sameonly", -- coalition
    blueHeloTemplates, -- templates
    nil, -- departures
@@ -224,16 +224,16 @@ SetupRATGroup(
 -- ********************************************************************************
 local blueLargeTransportTemplates = 
 { 
-   {name="RAT_BLUE_A400M", skins=nil},
-   {name="RAT_BLUE_V-22", skins=nil},
-   {name="RAT_BLUE_C-17A", skins=nil},
-   {name="RAT_BLUE_C-2A", skins=nil},
-   {name="RAT_BLUE_C-5", skins=nil},
-   {name="RAT_BLUE_P-3C", skins=nil},
+   {name="RAT_BLUE_A400M", skins=nil}, --RAT_BLUE_A400M
+   {name="RAT_BLUE_V-22", skins=nil}, --RAT_BLUE_V-22
+   {name="RAT_BLUE_C-17A", skins=nil}, --RAT_BLUE_C-17A
+   {name="RAT_BLUE_C-2A", skins=nil}, --RAT_BLUE_C-2A
+   {name="RAT_BLUE_C-5", skins=nil}, --RAT_BLUE_C-5
+   {name="RAT_BLUE_P-3C", skins=nil}, --RAT_BLUE_P-3C
 }
 
 SetupRATGroup(
-   "Blue Large Airbase Alias",
+   "Blue Large Airbase Alias @IFF:(12)5001",
    "sameonly", -- coalition
    blueLargeTransportTemplates, -- templates
    {"Ramat David","Akrotiri"}, -- departures
@@ -246,7 +246,7 @@ SetupRATGroup(
 )
 
 SetupRATGroup(
-   "Blue Large Transport Alias",
+   "Blue Large Transport Alias @IFF:(12)5002",
    "sameonly", -- coalition
    blueLargeTransportTemplates, -- templates
    {"RAT_WEST","RAT_NORTH", "RAT_SOUTH"}, -- departures
@@ -263,12 +263,12 @@ SetupRATGroup(
 -- ********************************************************************************
 local blueCarrierTemplates = 
 { 
-   {name="RAT_BLUE_C-2A", skins=nil},
-   {name="RAT_BLUE_HELO_CH-53", skins=nil},
+   {name="RAT_BLUE_C-2A", skins=nil}, --RAT_BLUE_C-2A
+   {name="RAT_BLUE_HELO_CH-53", skins=nil}, --RAT_BLUE_HELO_CH-53
 }
 
 SetupRATGroup(
-   "Blue Carrier Transport Alias",
+   "Blue Carrier Transport Alias @IFF:(12)5003",
    "sameonly", -- coalition
    blueCarrierTemplates, -- templates
    {"RAT_WEST","RAT_NORTH", "RAT_SOUTH", "Ramat David","Akrotiri"}, -- departures

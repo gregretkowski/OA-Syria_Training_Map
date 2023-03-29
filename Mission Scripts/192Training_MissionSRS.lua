@@ -22,7 +22,7 @@
 MISSIONSRS = {
   fileName = "Config\serverSettings.lua",                           -- name of file containing local server settings
   LocalServerConfigPath = nil,                                    -- path to server srs settings. nil if file is in root of server's savedgames profile.
-  LocalServerConfigFile = "dragon1.cfg",              -- srs server settings file name
+  LocalServerConfigFile = "dragon1.cfg",                          -- srs server settings file name
   defaultSrsPath = "C:/Program Files/DCS-SimpleRadio-Standalone", -- default path to SRS install directory if setting file is not avaialable "C:/Program Files/DCS-SimpleRadio-Standalone"
   defaultSrsPort = 5010,                                          -- default SRS port to use if settings file is not available
   defaultText = "No Message Defined!",                            -- default message if text is nil

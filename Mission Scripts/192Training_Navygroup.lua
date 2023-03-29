@@ -3,7 +3,7 @@ env.info("Navygroup Loading", false)
 --- Lincoln RECOVERY TANKER ---
 -------------------------------
 
-local ArcoRoosevelt=RECOVERYTANKER:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Tanker_S3-B_Arco1")
+local ArcoRoosevelt=RECOVERYTANKER:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Tanker_S3-B_Arco1 #IFF:(12)5017FR")
 ArcoRoosevelt:SetTakeoffCold()
 ArcoRoosevelt:SetTACAN(117, "ARC")
 ArcoRoosevelt:SetRadio(317.525, "AM")
@@ -15,7 +15,7 @@ ArcoRoosevelt:Start()
 ----- Lincoln RESCUE HELO -----
 -------------------------------
 
-local RescueheloLincoln=RESCUEHELO:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Rescue_Helo")
+local RescueheloLincoln=RESCUEHELO:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Rescue_Helo #IFF:(12)5016FR")
 RescueheloLincoln:SetTakeoffHot()
 RescueheloLincoln:SetAltitude(60)
 RescueheloLincoln:SetOffsetX(300)
@@ -26,7 +26,7 @@ RescueheloLincoln:Start()
 ----- Tarawa RESCUE HELO -----
 -------------------------------
 
-local RescueheloTarawa=RESCUEHELO:New(UNIT:FindByName("LHA-1 Tarawa"), "Rescue_Helo")
+local RescueheloTarawa=RESCUEHELO:New(UNIT:FindByName("LHA-1 Tarawa"), "Rescue_Helo #IFF:(12)5016FR")
 RescueheloTarawa:SetTakeoffHot()
 RescueheloTarawa:SetAltitude(60)
 RescueheloTarawa:SetOffsetX(300)

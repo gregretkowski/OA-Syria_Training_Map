@@ -3,7 +3,7 @@ env.info("Support Aircraft Loading", false)
 -----------------
 -- AWACS SPAWN --
 -----------------
-SPAWN:New('blueEWR_AWACS_MAGIC'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnLanding()
+SPAWN:New('blueEWR_AWACS_MAGIC #IFF:(12)5015FR'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnLanding()
 --SPAWN:New('blueEWR_AWACS_DARKSTAR'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnLanding()
 --SPAWN:New('AWACS_BEAR'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnEngineShutDown()
 
@@ -12,7 +12,7 @@ SPAWN:New('blueEWR_AWACS_MAGIC'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeat
 ------------------
 
 local Tanker_KC135MPRS_Shell1 = SPAWN
-   :New( "Tanker_KC135MPRS_Shell1" )
+   :New( "Tanker_KC135MPRS_Shell1 #IFF:(12)5014FR" )
    :InitLimit( 1, 99 )
    :InitRepeatOnLanding()
    :InitRadioFrequency(238.175)
@@ -24,7 +24,7 @@ local Tanker_KC135MPRS_Shell1 = SPAWN
      )
 
 local Tanker_KC135MPRS_Shell2 = SPAWN
-   :New( "Tanker_KC135MPRS_Shell2" )
+   :New( "Tanker_KC135MPRS_Shell2 #IFF:(12)5012FR" )
    :InitLimit( 1, 99 )
    :InitRepeatOnLanding()
    :InitRadioFrequency(262.425)
@@ -36,7 +36,7 @@ local Tanker_KC135MPRS_Shell2 = SPAWN
      )
      
 local Tanker_KC135_Texaco1 = SPAWN
-   :New( "Tanker_KC135_Texaco1" )
+   :New( "Tanker_KC135_Texaco1 #IFF:(12)5013FR" )
    :InitLimit( 1, 99 )
    :InitRepeatOnLanding()
    :InitRadioFrequency(317.750)
@@ -48,10 +48,10 @@ local Tanker_KC135_Texaco1 = SPAWN
      )
      
 local Tanker_KC135_Texaco2 = SPAWN
-   :New( "Tanker_KC135_Texaco2" )
+   :New( "Tanker_KC135_Texaco2 #IFF:(12)5011FR" )
    :InitLimit( 1, 99 )
    :InitRepeatOnLanding()
-   :InitRadioFrequency(225.325)
+   :InitRadioFrequency(255.325)
    :SpawnScheduled( 15, 1 )
    :OnSpawnGroup(
      function( Texaco2 )
