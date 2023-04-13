@@ -33,11 +33,18 @@ RescueheloTarawa:SetOffsetX(300)
 RescueheloTarawa:SetOffsetZ(300)
 RescueheloTarawa:Start()
 
+------------------------
+------  Navygroup ------
+------------------------
+
+Navygroup_menu = MENU_COALITION:New(coalition.side.BLUE, "Navygroup")
+
+
 -------------------------------
 ------ Lincoln Navygroup ------
 -------------------------------
 
-lincoln_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-72 A. Lincoln")
+lincoln_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-72 A. Lincoln", Navygroup_menu)
 
 Lincoln = GROUP:FindByName('CVN-72')
 CVN72 = NAVYGROUP:New(Lincoln)
@@ -88,7 +95,7 @@ menu_recovery_5 = MENU_COALITION_COMMAND:New( coalition.side.BLUE,"END RECOVERY"
 ------ Tarawa Navygroup ------
 -------------------------------
 
-tarawa_menu = MENU_COALITION:New(coalition.side.BLUE, "LHA-1 Tarawa")
+tarawa_menu = MENU_COALITION:New(coalition.side.BLUE, "LHA-1 Tarawa", Navygroup_menu)
 
 Tarawa = GROUP:FindByName('LHA-1 Tarawa')
 LHA01 = NAVYGROUP:New(Tarawa)

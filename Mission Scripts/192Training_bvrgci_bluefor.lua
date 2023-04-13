@@ -1,4 +1,4 @@
-env.info("bvr loading", false)
+env.info("bvr_bluefor loading", false)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --- BEGIN BVRGCI SECTION.
@@ -37,13 +37,13 @@ local BVRGCI = {
 
   --- ME Zone object for BVRGCI area boundary
   -- @field #string ZoneBvr 
-  BVRGCI.ZoneBvr = ZONE:FindByName("ZONE_BVR")
+  BVRGCI.ZoneBvr = ZONE:FindByName("ZONE_BVR_BLUEFOR")
   --- ME Zone object for adversary spawn point
   -- @field #string ZoneBvrSpawn 
-  BVRGCI.ZoneBvrSpawn = ZONE:FindByName("ZONE_BVR_SPAWN")
+  BVRGCI.ZoneBvrSpawn = ZONE:FindByName("ZONE_BVR_SPAWN_BLUEFOR")
   --- ME Zone object for adversary spawn waypoint 1
   -- @field #string ZoneBvrWp1 
-  BVRGCI.ZoneBvrWp1 = ZONE:FindByName("ZONE_BVR_WP1")
+  BVRGCI.ZoneBvrWp1 = ZONE:FindByName("ZONE_BVR_WP1_BLUEFOR")
   
   --- Sizes of adversary groups
   -- @type BVRGCI.Size
@@ -71,15 +71,16 @@ local BVRGCI = {
   -- @list <#string> Display name for adversary type.
   -- @list <#string> Name of spawn template for adversary type.
   BVRGCI.Adversary = { 
-    {"F-14B", "BVR_REDFOR_F-14B"},
-    {"F-15", "BVR_REDFOR_F-15" },
-    {"F-16", "BVR_REDFOR_F-16"},
-    {"F-18", "BVR_REDFOR_F-18"},
-    {"F-1", "BVR_REDFOR_F-1"},
-    {"AV8B", "BVR_REDFOR_AV8B"},
-    {"F-5E", "BVR_REDFOR_F-5E"},
-    {"M2000", "BVR_REDFOR_M2000"},
-    {"B-1B Bomber", "BVR_REDFOR_B-1B"},
+    {"F-14A", "BVR_BLUEFOR_F-14A"},
+    {"F-4E", "BVR_BLUEFOR_F-4E" },
+    {"F-16", "BVR_BLUEFOR_F-16"},
+    {"F-18", "BVR_BLUEFOR_F-18"},
+    {"F-1EE", "BVR_BLUEFOR_F1EE"},
+    {"J-11A", "BVR_BLUEFOR_J-11A"},
+    {"JF-17", "BVR_BLUEFOR_JF-17"},
+    {"M-2000C", "BVR_BLUEFOR_M-2000C"},
+    {"MiG-21", "BVR_BLUEFOR_MiG-21"},
+    {"MiG-29S", "BVR_BLUEFOR_MiG-29S"},
   }
   
   -- @field #table BVRGCI.BvrSpawnVec3 Vec3 coordinates for spawnpoint.
@@ -156,7 +157,7 @@ local BVRGCI = {
       local typeSpawnTemplate = v[2]
       -- add Type spawn commands if spawn template exists, else send message that it doesn't
       if GROUP:FindByName(typeSpawnTemplate) ~= nil then
-          MENU_COALITION_COMMAND:New(coalition.side.RED, typeName, ParentMenu, BVRGCI.SpawnType, typeName, typeSpawnTemplate, BVRGCI.Spawn.Qty, BVRGCI.Spawn.Level, ENUMS.Formation.FixedWing[BVRGCI.Spawn.Formation][BVRGCI.Spawn.Spacing])
+          MENU_COALITION_COMMAND:New(coalition.side.BLUE, typeName, ParentMenu, BVRGCI.SpawnType, typeName, typeSpawnTemplate, BVRGCI.Spawn.Qty, BVRGCI.Spawn.Level, ENUMS.Formation.FixedWing[BVRGCI.Spawn.Formation][BVRGCI.Spawn.Spacing])
       else
         _msg = "Spawn template " .. typeName .. " was not found and could not be added to menu."
         MESSAGE:New(_msg):ToAll()
@@ -171,7 +172,7 @@ local BVRGCI = {
   function BVRGCI.BuildMenuSpacing(Spacing, ParentMenu)
     local MenuName = Spacing
     local MenuText = Spacing
-    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.RED, MenuText, ParentMenu)
+    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.BLUE, MenuText, ParentMenu)
     BVRGCI.Spawn.Spacing = Spacing
     -- Build Type menus
     BVRGCI.BuildMenuType(BVRGCI.SubMenu[MenuName])
@@ -183,7 +184,7 @@ local BVRGCI = {
   -- @param #object ParentMenu Parent menu with which this menus should be associated.
   function BVRGCI.BuildMenuFormation(Formation, MenuText, ParentMenu)
     local MenuName = Formation
-    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.RED, MenuText, ParentMenu)
+    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.BLUE, MenuText, ParentMenu)
     BVRGCI.Spawn.Formation = Formation
     -- Build formation spacing menus
     BVRGCI.BuildMenuSpacing("Open", BVRGCI.SubMenu[MenuName])
@@ -196,7 +197,7 @@ local BVRGCI = {
   -- @param #string MenuName Text for this item's menu name
   -- 
   function BVRGCI.BuildMenuLevel(Altitude, MenuName, MenuText, ParentMenu)
-    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.RED, MenuText, ParentMenu)
+    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.BLUE, MenuText, ParentMenu)
     BVRGCI.Spawn.Level = Altitude
     --Build Formation menus
     BVRGCI.BuildMenuFormation("LineAbreast", "Line Abreast", BVRGCI.SubMenu[MenuName])
@@ -215,7 +216,7 @@ local BVRGCI = {
   -- @param #object ParentMenu to which this menu item belongs 
   function BVRGCI.BuildMenuQty(Qty, MenuName, ParentMenu)
     MenuText = MenuName
-    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.RED, MenuText, ParentMenu)
+    BVRGCI.SubMenu[MenuName] = MENU_COALITION:New(coalition.side.BLUE, MenuText, ParentMenu)
     BVRGCI.Spawn.Qty = Qty
     -- Build Level menus
     BVRGCI.BuildMenuLevel(BVRGCI.Altitude.High, "High", "High Level",  BVRGCI.SubMenu[MenuName])
@@ -227,17 +228,17 @@ local BVRGCI = {
   
   --- Add BVRGCI MENU Root.
   function BVRGCI.BuildMenuRoot()
-    REDFOR = MENU_COALITION:New(coalition.side.RED, "REDFOR")
-    BVRGCI.Menu = MENU_COALITION:New(coalition.side.RED, "AI BVR/GCI", REDFOR)
+    BLUEFOR = MENU_COALITION:New(coalition.side.BLUE, "BLUEFOR")
+    BVRGCI.Menu = MENU_COALITION:New(coalition.side.BLUE, "AI BVR/GCI", BLUEFOR)
       -- Build group size menus
       BVRGCI.BuildMenuQty(1, "Single", BVRGCI.Menu)
       BVRGCI.BuildMenuQty(2, "Pair", BVRGCI.Menu)
       BVRGCI.BuildMenuQty(4, "Four", BVRGCI.Menu)
       -- level 2 command
-      BVRGCI.MenuRemoveAdversaries = MENU_COALITION_COMMAND:New(coalition.side.RED, "Remove BVR Adversaries", BVRGCI.Menu, BVRGCI.RemoveAdversaries)
+      BVRGCI.MenuRemoveAdversaries = MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Remove BVR Adversaries", BVRGCI.Menu, BVRGCI.RemoveAdversaries)
   end
   
   BVRGCI.BuildMenuRoot()
   
 --- END BVRGCI SECTION
-env.info("bvr complete", false)
+env.info("bvr_bluefor complete", false)

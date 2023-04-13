@@ -53,10 +53,10 @@ KILLBOX.activeSites = {}
 -- @field #string kbName Lable for killbox. MUST be UNIQUE.
 -- @field #string menuText Text to be used for the killbox's menu.
 KILLBOX.zones = {
-  { zoneName = "CAS SAM Al Harah", kbName = "Harah", menuText = "SAM Harah"},
+  { zoneName = "CAS SAM Al Harah", kbName = "Harah", menuText = "SAM AlHarah"},
   { zoneName = "CAS SAM Qaraoun", kbName = "Qaraoun", menuText = "SAM Qaraoun"},
   { zoneName = "CAS SAM Nicosia", kbName = "Nicosia", menuText = "SAM Nicosia"},
-  { zoneName = "SAM Mezzeh Killbox", kbName = "Mezzeh", menuText = "Mezzeh Killbox"},
+  { zoneName = "SAM Mezzeh Killbox", kbName = "Mezzeh", menuText = "SAM Mezzeh Killbox"},
   }
 
 --- THREATS
@@ -73,7 +73,9 @@ KILLBOX.threats = {
   { spawnTemplate = "kbSAM-Rapier1",     menuText = "Activate Rapier", threatText = "Rapier" },
   { spawnTemplate = "kbSAM-Hawk1",       menuText = "Activate Hawk", threatText = "Hawk" },
   { spawnTemplate = "kbSAM-AAA-IRsam1",  menuText = "Activate AAA/IR SAM", threatText = "AAA/IR"},
-  }
+  { spawnTemplate = "kbSAM-SA9-AAA-1",  menuText = "Activate SA9/AAA SAM", threatText = "AAA/IR"},
+  { spawnTemplate = "kbSAM-SA8-AAA",  menuText = "Activate SA8/AAA SAM", threatText = "AAA/IR"},
+ }
 
 
 ---------------------------------------------------------------------------------------------------
@@ -117,7 +119,7 @@ function activateKILLBOXThreat(spawnTemplate, kbName, zoneName, threatText)
         KILLBOX.activeSites[kbName].rIADS = SkynetIADS:create("KILLBOX" .. kbName)
         KILLBOX.activeSites[kbName].rIADS:setUpdateInterval(5)
         KILLBOX.activeSites[kbName].rIADS:addSAMSite(spawnGroup.GroupName)
-        KILLBOX.activeSites[kbName].rIADS:getSAMSiteByGroupName(spawnGroup.GroupName):setGoLiveRangeInPercent(80)
+        KILLBOX.activeSites[kbName].rIADS:getSAMSiteByGroupName(spawnGroup.GroupName):setGoLiveRangeInPercent(80):setCanEngageHARM(true):setCanEngageAirWeapons(true)
         KILLBOX.activeSites[kbName].rIADS:activate()        
         --debugMsg = MESSAGE:New(kbName .. " - spawnGoup = " .. spawnGroup.GroupName):ToAll()
       end
