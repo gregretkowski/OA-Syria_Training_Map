@@ -6,6 +6,8 @@ env.info("Support Aircraft Loading", false)
 SPAWN:New('blueEWR_AWACS_MAGIC #IFF:(12)5015FR'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnLanding()
 --SPAWN:New('blueEWR_AWACS_DARKSTAR #IFF:(12)5016FR-1'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnLanding()
 --SPAWN:New('AWACS_BEAR'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnEngineShutDown()
+--SPAWN:New('zzTEST_BVR_BLUEFOR'):InitLimit(4,0):SpawnScheduled(2,1):InitRepeatOnEngineShutDown()
+
 
 ------------------
 -- TANKER SPAWN --

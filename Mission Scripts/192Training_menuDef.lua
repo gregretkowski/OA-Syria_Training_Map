@@ -20,3 +20,6 @@ BVR AWACS/Spawn Red AWACS =107
 BVR AWACS/Despawn Red AWACS =207
 
 ]])
+
+--BVR AWACS/Spawn Ground Radars =108
+--BVR AWACS/Despawn Ground Radars =208

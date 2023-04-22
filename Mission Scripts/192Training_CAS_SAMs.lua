@@ -38,7 +38,7 @@ local KILLBOX = {}
 --- Root menu.
 -- @field #table menuTop Root KILLTABLE top level menu
 --MenuTop = MENU_COALITION:New(coalition.side.BLUE, "Killbox Menus")
---TRAINMAP = MENU_COALITION:New(coalition.side.BLUE, "CAS Ranges SAMs")
+--TRAINMAP = MENU_COALITION:New(coalition.side.BLUE, "Spawned Ranges")
 KILLBOX.menuTop = MENU_COALITION:New(coalition.side.BLUE, "CAS Ranges SAMs")
 --- Killbox selection menu.
 -- @field #table menuZones 

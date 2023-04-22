@@ -37,13 +37,13 @@ local BVRGCI = {
 
   --- ME Zone object for BVRGCI area boundary
   -- @field #string ZoneBvr 
-  BVRGCI.ZoneBvr = ZONE:FindByName("ZONE_BVR_BLUEFOR")
+  BVRGCI.ZoneBvr = ZONE:FindByName("ZONE_BVR_BLUEFOR2")
   --- ME Zone object for adversary spawn point
   -- @field #string ZoneBvrSpawn 
-  BVRGCI.ZoneBvrSpawn = ZONE:FindByName("ZONE_BVR_SPAWN_BLUEFOR")
+  BVRGCI.ZoneBvrSpawn = ZONE:FindByName("ZONE_BVR_SPAWN_BLUEFOR2")
   --- ME Zone object for adversary spawn waypoint 1
   -- @field #string ZoneBvrWp1 
-  BVRGCI.ZoneBvrWp1 = ZONE:FindByName("ZONE_BVR_WP1_BLUEFOR")
+  BVRGCI.ZoneBvrWp1 = ZONE:FindByName("ZONE_BVR_WP1_BLUEFOR2")
   
   --- Sizes of adversary groups
   -- @type BVRGCI.Size
@@ -71,16 +71,16 @@ local BVRGCI = {
   -- @list <#string> Display name for adversary type.
   -- @list <#string> Name of spawn template for adversary type.
   BVRGCI.Adversary = { 
-    {"F-14A", "BVR_BLUEFOR_F-14A"},
-    {"F-4E", "BVR_BLUEFOR_F-4E" },
-    {"F-16", "BVR_BLUEFOR_F-16"},
-    {"F-18", "BVR_BLUEFOR_F-18"},
-    {"F-1EE", "BVR_BLUEFOR_F1EE"},
-    {"J-11A", "BVR_BLUEFOR_J-11A"},
-    {"JF-17", "BVR_BLUEFOR_JF-17"},
-    {"M-2000C", "BVR_BLUEFOR_M-2000C"},
-    {"MiG-21", "BVR_BLUEFOR_Su-27"},
-    {"MiG-29S", "BVR_BLUEFOR_MiG-29S"},
+    {"F-14A", "BVR_BLUEFOR_F-14A2"},
+    {"F-4E", "BVR_BLUEFOR_F-4E2" },
+    {"F-16", "BVR_BLUEFOR_F-162"},
+    {"F-18", "BVR_BLUEFOR_F-182"},
+    {"F-1EE", "BVR_BLUEFOR_F1EE2"},
+    {"J-11A", "BVR_BLUEFOR_J-11A2"},
+    {"JF-17", "BVR_BLUEFOR_JF-172"},
+    {"M-2000C", "BVR_BLUEFOR_M-2000C2"},
+    {"MiG-21", "BVR_BLUEFOR_Su-272"},
+    {"MiG-29S", "BVR_BLUEFOR_MiG-29S2"},
   }
   
   -- @field #table BVRGCI.BvrSpawnVec3 Vec3 coordinates for spawnpoint.
@@ -229,7 +229,7 @@ local BVRGCI = {
   --- Add BVRGCI MENU Root.
   function BVRGCI.BuildMenuRoot()
     BLUEFOR = MENU_COALITION:New(coalition.side.BLUE, "BLUEFOR")
-    BVRGCI.Menu = MENU_COALITION:New(coalition.side.BLUE, "AI BVR/GCI #1", BLUEFOR)
+    BVRGCI.Menu = MENU_COALITION:New(coalition.side.BLUE, "AI BVR/GCI #2", BLUEFOR)
       -- Build group size menus
       BVRGCI.BuildMenuQty(1, "Single", BVRGCI.Menu)
       BVRGCI.BuildMenuQty(2, "Pair", BVRGCI.Menu)

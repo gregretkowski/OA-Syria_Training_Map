@@ -82,7 +82,7 @@ function MTRAINER:AddMenu(unitname)
         -- add GROUP menu if not already present
         if MTRAINER.MenuF10[gid] == nil then
           BASE:T("[MTRAINER] Adding menu for group: " .. group:GetName())
-          MTRAINER.MenuF10[gid] = MENU_GROUP:New(group, "MISSILE TRAINER")
+          MTRAINER.MenuF10[gid] = MENU_GROUP:New(group, "Missile Trainer")
         end
         if MTRAINER.MenuF10[gid][uid] == nil then
           BASE:T("[MTRAINER] Add submenu for player: " .. playername)
