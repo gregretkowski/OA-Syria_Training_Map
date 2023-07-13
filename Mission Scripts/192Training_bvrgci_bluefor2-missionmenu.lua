@@ -79,7 +79,7 @@ local BVRGCI = {
     {"J-11A", "BVR_BLUEFOR_J-11A2"},
     {"JF-17", "BVR_BLUEFOR_JF-172"},
     {"Transport", "BVR_BLUEFOR_TRANSPORT2"},
-    {"MiG-21", "BVR_BLUEFOR_Su-272"},
+    {"MiG-21", "BVR_BLUEFOR_MiG-212"},
     {"MiG-29S", "BVR_BLUEFOR_MiG-29S2"},
   }
   
