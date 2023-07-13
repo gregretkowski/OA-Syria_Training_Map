@@ -10,6 +10,7 @@ Spawned Ranges/Qaraoun - YC52/Spawn-Respawn =101
 Spawned Ranges/Qaraoun - YC52/Despawn =201
 Spawned Ranges/AlHarah - BS26/Spawn-Respawn =102
 Spawned Ranges/AlHarah - BS26/Despawn =202
+Spawned Ranges/AlHarah - BS26/HVT =300
 Spawned Ranges/Nicosia - WD39/Spawn-Respawn =103
 Spawned Ranges/Nicosia - WD39/Despawn =203
 Spawned Ranges/Rankos - WD39/Spawn-Respawn =104
