@@ -4,6 +4,8 @@ easyMenu = string.format([[
 
 Missions/Mezzeh Convoy/Spawn Convoy =105
 Missions/Mezzeh Convoy/Despawn Convoy =205
+Missions/CSAR Mission/Spawn = 109
+Missions/CSAR Mission/Despawn {bugged} = 209
 Spawned Ranges/Mezzeh - BT40/Spawn-Respawn =100
 Spawned Ranges/Mezzeh - BT40/Despawn =200
 Spawned Ranges/Qaraoun - YC52/Spawn-Respawn =101

@@ -18,8 +18,8 @@ ArcoRoosevelt:Start()
 local RescueheloLincoln=RESCUEHELO:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Rescue_Helo #IFF:(12)5016FR")
 RescueheloLincoln:SetTakeoffHot()
 RescueheloLincoln:SetAltitude(60)
-RescueheloLincoln:SetOffsetX(300)
-RescueheloLincoln:SetOffsetZ(300)
+RescueheloLincoln:SetOffsetX(300) --left/right
+RescueheloLincoln:SetOffsetZ(300) --fwd/back
 RescueheloLincoln:Start()
 
 -------------------------------
@@ -29,8 +29,19 @@ RescueheloLincoln:Start()
 local RescueheloTarawa=RESCUEHELO:New(UNIT:FindByName("LHA-1 Tarawa"), "Rescue_Helo #IFF:(12)5016FR")
 RescueheloTarawa:SetTakeoffHot()
 RescueheloTarawa:SetAltitude(60)
-RescueheloTarawa:SetOffsetX(300)
-RescueheloTarawa:SetOffsetZ(300)
+RescueheloTarawa:SetOffsetX(300) --left/right
+RescueheloTarawa:SetOffsetZ(300) --fwd/back
+RescueheloTarawa:Start()
+
+-------------------------------
+----- Kuznetsov RESCUE HELO -----
+-------------------------------
+
+local RescueheloTarawa=RESCUEHELO:New(UNIT:FindByName("Kuznetsov"), "Rescue_Helo_Red")
+RescueheloTarawa:SetTakeoffHot()
+RescueheloTarawa:SetAltitude(35)
+RescueheloTarawa:SetOffsetX(0) --left/right
+RescueheloTarawa:SetOffsetZ(-300) --fwd/back
 RescueheloTarawa:Start()
 
 ------------------------
@@ -38,6 +49,7 @@ RescueheloTarawa:Start()
 ------------------------
 
 Navygroup_menu = MENU_COALITION:New(coalition.side.BLUE, "Navygroup")
+Navygroup_menu_red = MENU_COALITION:New(coalition.side.RED, "Navygroup")
 
 
 -------------------------------
@@ -50,7 +62,7 @@ Lincoln = GROUP:FindByName('CVN-72')
 CVN72 = NAVYGROUP:New(Lincoln)
 CVN72:Activate()
 CVN72:SetPatrolAdInfinitum()
-CVN72:Cruise(15)
+CVN72:Cruise(10)
 
 function start_recovery_Lincoln() 
  if CVN72:IsSteamingIntoWind() == true then
@@ -88,7 +100,7 @@ menu_recovery_4 = MENU_COALITION_COMMAND:New( coalition.side.BLUE,"Recovery/90mi
 menu_recovery_5 = MENU_COALITION_COMMAND:New( coalition.side.BLUE,"END RECOVERY",lincoln_menu,
  function()
    Message_40 = MESSAGE:New("The Lincoln recovery window has been cancelled", 5):ToBlue()  
-   CVN72:TurnIntoWindStop():Cruise(15)
+   CVN72:TurnIntoWindStop():Cruise(10)
   end )
   
  -------------------------------
@@ -139,6 +151,59 @@ menu_recovery_4 = MENU_COALITION_COMMAND:New( coalition.side.BLUE,"Recovery/90mi
 menu_recovery_5 = MENU_COALITION_COMMAND:New( coalition.side.BLUE,"END RECOVERY",tarawa_menu,
  function()
    Message_40 = MESSAGE:New("The Tarawa recovery window has been cancelled", 5):ToBlue()  
-   LHA01:TurnIntoWindStop():Cruise(15)
+   LHA01:TurnIntoWindStop():Cruise(10)
+  end ) 
+env.info("Navygroup Complete", false)
+
+ -------------------------------
+------ Kuznetsov Navygroup ------
+-------------------------------
+
+Kuznetsov_menu = MENU_COALITION:New(coalition.side.RED, "Kuznetsov", Navygroup_menu_red)
+
+Kuznetsov = GROUP:FindByName('Kuznetsov')
+KUZ01 = NAVYGROUP:New(Kuznetsov)
+KUZ01:Activate()
+KUZ01:SetPatrolAdInfinitum()
+KUZ01:Cruise(10)
+
+function start_recovery_Kuznetsov() 
+ if KUZ01:IsSteamingIntoWind() == true then
+ local shipheading01 = mist.utils.round(KUZ01:GetHeadingIntoWind(),0)
+ Message_01 = MESSAGE:New("Kuznetsov is currently launching/recovering, currently active recovery window closes at time "..timerecovery_end01.." BRC is "..shipheading01, 25):ToRed()        
+else 
+ local timenow01=timer.getAbsTime( )
+ local timeend01=timenow01+KUZ01_WindowTime*60
+ local timerecovery_start01 = UTILS.SecondsToClock(timenow01,true)
+ local winddir01 = mist.utils.round(KUZ01:GetWind(),0)
+  timerecovery_end01 = UTILS.SecondsToClock(timeend01,true)
+  KUZ01:AddTurnIntoWind(timerecovery_start01,timerecovery_end01,30,false,-9)
+ Message_01 = MESSAGE:New("Kuznetsov is turning, Recovery Window is open from "..timerecovery_start01.." until "..timerecovery_end01.." wind is at "..winddir01.." deg", 25):ToRed()            
+  end end
+menu_recovery_1 = MENU_COALITION_COMMAND:New( coalition.side.RED,"Recovery/15min",Kuznetsov_menu,
+ function() KUZ01_WindowTime = 17 
+   Message_10 = MESSAGE:New("An Kuznetsov recovery window has been requested for 15 minutes", 5):ToRed()  
+    timer.scheduleFunction(start_recovery_Kuznetsov, nil , timer.getTime() + 6)  
+  end )
+menu_recovery_2 = MENU_COALITION_COMMAND:New( coalition.side.RED,"Recovery/30min",Kuznetsov_menu,
+ function() KUZ01_WindowTime = 32 
+   Message_20 = MESSAGE:New("An Kuznetsov recovery window has been requested for 30 minutes", 5):ToRed()  
+    timer.scheduleFunction(start_recovery_Kuznetsov, nil , timer.getTime() + 6)  
+  end )
+menu_recovery_3 = MENU_COALITION_COMMAND:New( coalition.side.RED,"Recovery/60min",Kuznetsov_menu,
+ function() KUZ01_WindowTime = 62 
+   Message_30 = MESSAGE:New("An Kuznetsov recovery window has been requested for 60 minutes", 5):ToRed()  
+    timer.scheduleFunction(start_recovery_Kuznetsov, nil , timer.getTime() + 6)  
+  end )
+menu_recovery_4 = MENU_COALITION_COMMAND:New( coalition.side.RED,"Recovery/90min",Kuznetsov_menu,
+ function() KUZ01_WindowTime = 92 
+   Message_40 = MESSAGE:New("An Kuznetsov recovery window has been requested for 90 minutes", 5):ToRed()  
+    timer.scheduleFunction(start_recovery_Kuznetsov, nil , timer.getTime() + 6)  
+  end )
+menu_recovery_5 = MENU_COALITION_COMMAND:New( coalition.side.RED,"END RECOVERY",Kuznetsov_menu,
+ function()
+   Message_40 = MESSAGE:New("The Kuznetsov recovery window has been cancelled", 5):ToRed()  
+   KUZ01:TurnIntoWindStop()
+   KUZ01:Surface(10)
   end ) 
 env.info("Navygroup Complete", false)
