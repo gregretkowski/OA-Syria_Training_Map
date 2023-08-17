@@ -13,6 +13,8 @@ SPAWN:New('blueEWR_AWACS_MAGIC #IFF:(12)5015FR'):InitLimit(1,99):SpawnScheduled(
 -- TANKER SPAWN --
 ------------------
 
+SPAWN:New('Tanker#261'):InitLimit(1,99):SpawnScheduled(60,1):InitRepeatOnLanding()
+
 local Tanker_KC135MPRS_Shell1 = SPAWN
    :New( "Tanker_KC135MPRS_Shell1 #IFF:(12)5014FR" )
    :InitLimit( 1, 99 )
