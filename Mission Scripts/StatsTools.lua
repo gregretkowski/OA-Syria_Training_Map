@@ -556,7 +556,7 @@ end
 function JtacLaser.Activate(_coalition)
     JtacLaser.Active = true
     if _coalition == "blue" then _coalition = coalition.side.BLUE else _coalition = coalition.side.RED end
-    JtacLaser.MenuBase = MENU_COALITION:New( _coalition, "JTAC" )
+    JtacLaser.MenuBase = MENU_COALITION:New( _coalition, "JTAC",CASroot )
     MENU_COALITION_COMMAND:New( _coalition,"Check all JTAC Status",JtacLaser.MenuBase,JtacLaser.CheckJTAC,_coalition)
 end
 

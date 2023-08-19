@@ -185,8 +185,8 @@ function BFMACM_bluefor:AddMenu(unitname)
         -- add GROUP menu if not already present
         if BFMACM_bluefor.menuF10_bluefor[gid] == nil then
           BASE:T("[ACM] Adding menu for group: " .. group:GetName())
-          ACM = MENU_MISSION:New("BLUEFOR")
-          BFMACM_bluefor.menuF10_bluefor[gid] = MENU_GROUP:New(group, "ACM", ACM)
+          --ACM = MENU_MISSION:New("BLUEFOR")
+          BFMACM_bluefor.menuF10_bluefor[gid] = MENU_GROUP:New(group, "ACM", A2Aroot)
         end
         if BFMACM_bluefor.menuF10_bluefor[gid][uid] == nil then
           -- add playername submenu

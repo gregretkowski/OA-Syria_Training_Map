@@ -23,7 +23,7 @@ if (DownedPilot) then
          pilot:Destroy(true)
       end
    )
-end
+  end
 
 end
 

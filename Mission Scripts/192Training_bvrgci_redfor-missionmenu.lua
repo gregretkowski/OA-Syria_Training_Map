@@ -227,8 +227,8 @@ local BVRGCI = {
   
   --- Add BVRGCI MENU Root.
   function BVRGCI.BuildMenuRoot()
-    REDFOR = MENU_MISSION:New("REDFOR")
-    BVRGCI.Menu = MENU_MISSION:New("AI BVR/GCI", REDFOR)
+    --REDFOR = MENU_MISSION:New("REDFOR")
+    BVRGCI.Menu = MENU_MISSION:New("AI BVR/GCI", A2Aroot)
       -- Build group size menus
       BVRGCI.BuildMenuQty(1, "Single", BVRGCI.Menu)
       BVRGCI.BuildMenuQty(2, "Pair", BVRGCI.Menu)

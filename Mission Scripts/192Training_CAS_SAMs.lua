@@ -39,7 +39,7 @@ local KILLBOX = {}
 -- @field #table menuTop Root KILLTABLE top level menu
 --MenuTop = MENU_COALITION:New(coalition.side.BLUE, "Killbox Menus")
 --TRAINMAP = MENU_COALITION:New(coalition.side.BLUE, "Spawned Ranges")
-KILLBOX.menuTop = MENU_COALITION:New(coalition.side.BLUE, "CAS Ranges SAMs")
+KILLBOX.menuTop = MENU_COALITION:New(coalition.side.BLUE, "CAS Ranges SAMs", CASroot)
 --- Killbox selection menu.
 -- @field #table menuZones 
 KILLBOX.menuZones = {}
@@ -53,9 +53,9 @@ KILLBOX.activeSites = {}
 -- @field #string kbName Lable for killbox. MUST be UNIQUE.
 -- @field #string menuText Text to be used for the killbox's menu.
 KILLBOX.zones = {
-  { zoneName = "CAS SAM Al Harah", kbName = "Harah", menuText = "SAM AlHarah"},
-  { zoneName = "CAS SAM Qaraoun", kbName = "Qaraoun", menuText = "SAM Qaraoun"},
-  { zoneName = "CAS SAM Nicosia", kbName = "Nicosia", menuText = "SAM Nicosia"},
+  { zoneName = "CAS SAM Al Harah", kbName = "Harah", menuText = "SAM SISI Town"},
+  { zoneName = "CAS SAM Qaraoun", kbName = "Qaraoun", menuText = "SAM Call of Duty"},
+  { zoneName = "CAS SAM Nicosia", kbName = "Nicosia", menuText = "SAM New York City"},
   { zoneName = "SAM Mezzeh Killbox", kbName = "Mezzeh", menuText = "SAM Mezzeh Killbox"},
   }
 
