@@ -106,7 +106,7 @@ SetupRATGroup(
    100, -- min distance
    nil, -- max distance
    nil, -- max FL
-   2 -- spawn count
+   5 -- spawn count
 )
 
 SetupRATGroup(
@@ -119,7 +119,7 @@ SetupRATGroup(
    100, -- min distance
    nil, -- max distance
    nil, -- max FL
-   2 -- spawn count
+   5 -- spawn count
 )
 
 -- ********************************************************************************
