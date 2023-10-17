@@ -64,18 +64,17 @@ CVN72:Activate()
 CVN72:SetPatrolAdInfinitum()
 CVN72:Cruise(10)
 
-function start_recovery_Lincoln() 
+function start_recovery_Lincoln()
+ local shipheading72 = mist.utils.round(CVN72:GetHeadingIntoWind(-9,28),0)
  if CVN72:IsSteamingIntoWind() == true then
- local shipheading72 = mist.utils.round(CVN72:GetHeadingIntoWind(),0)
  Message_01 = MESSAGE:New("Lincoln is currently launching/recovering, currently active recovery window closes at time "..timerecovery_end72.." BRC is "..shipheading72, 25):ToBlue()        
 else 
  local timenow72=timer.getAbsTime( )
  local timeend72=timenow72+CVN72_WindowTime*60
  local timerecovery_start72 = UTILS.SecondsToClock(timenow72,true)
- local winddir72 = mist.utils.round(CVN72:GetWind(),0)
   timerecovery_end72 = UTILS.SecondsToClock(timeend72,true)
-  CVN72:AddTurnIntoWind(timerecovery_start72,timerecovery_end72,31,false,-9)
- Message_01 = MESSAGE:New("Lincoln is turning, Recovery Window is open from "..timerecovery_start72.." until "..timerecovery_end72.." wind is at "..winddir72.." deg", 25):ToBlue()            
+  CVN72:AddTurnIntoWind(timerecovery_start72,timerecovery_end72,28,false,-9)
+ Message_01 = MESSAGE:New("Lincoln is turning, Recovery Window is open from "..timerecovery_start72.." until "..timerecovery_end72.." BRC at "..shipheading72.." deg", 25):ToBlue()            
   end end
 menu_recovery_1 = MENU_COALITION_COMMAND:New( coalition.side.BLUE,"Recovery/15min",lincoln_menu,
  function() CVN72_WindowTime = 17 
@@ -116,17 +115,16 @@ LHA01:SetPatrolAdInfinitum()
 LHA01:Cruise(10)
 
 function start_recovery_Tarawa() 
+ local shipheading01 = mist.utils.round(LHA01:GetHeadingIntoWind(-9,20),0)
  if LHA01:IsSteamingIntoWind() == true then
- local shipheading01 = mist.utils.round(LHA01:GetHeadingIntoWind(),0)
  Message_01 = MESSAGE:New("Tarawa is currently launching/recovering, currently active recovery window closes at time "..timerecovery_end01.." BRC is "..shipheading01, 25):ToBlue()        
 else 
  local timenow01=timer.getAbsTime( )
  local timeend01=timenow01+LHA01_WindowTime*60
  local timerecovery_start01 = UTILS.SecondsToClock(timenow01,true)
- local winddir01 = mist.utils.round(LHA01:GetWind(),0)
   timerecovery_end01 = UTILS.SecondsToClock(timeend01,true)
   LHA01:AddTurnIntoWind(timerecovery_start01,timerecovery_end01,20,false,-9)
- Message_01 = MESSAGE:New("Tarawa is turning, Recovery Window is open from "..timerecovery_start01.." until "..timerecovery_end01.." wind is at "..winddir01.." deg", 25):ToBlue()            
+ Message_01 = MESSAGE:New("Tarawa is turning, Recovery Window is open from "..timerecovery_start01.." until "..timerecovery_end01.." BRC is "..shipheading01.." deg", 25):ToBlue()            
   end end
 menu_recovery_1 = MENU_COALITION_COMMAND:New( coalition.side.BLUE,"Recovery/15min",tarawa_menu,
  function() LHA01_WindowTime = 17 
@@ -168,17 +166,16 @@ KUZ01:SetPatrolAdInfinitum()
 KUZ01:Cruise(10)
 
 function start_recovery_Kuznetsov() 
+ local shipheading01 = mist.utils.round(KUZ01:GetHeadingIntoWind(-9,28),0)
  if KUZ01:IsSteamingIntoWind() == true then
- local shipheading01 = mist.utils.round(KUZ01:GetHeadingIntoWind(),0)
  Message_01 = MESSAGE:New("Kuznetsov is currently launching/recovering, currently active recovery window closes at time "..timerecovery_end01.." BRC is "..shipheading01, 25):ToRed()        
 else 
  local timenow01=timer.getAbsTime( )
  local timeend01=timenow01+KUZ01_WindowTime*60
  local timerecovery_start01 = UTILS.SecondsToClock(timenow01,true)
- local winddir01 = mist.utils.round(KUZ01:GetWind(),0)
   timerecovery_end01 = UTILS.SecondsToClock(timeend01,true)
-  KUZ01:AddTurnIntoWind(timerecovery_start01,timerecovery_end01,30,false,-9)
- Message_01 = MESSAGE:New("Kuznetsov is turning, Recovery Window is open from "..timerecovery_start01.." until "..timerecovery_end01.." wind is at "..winddir01.." deg", 25):ToRed()            
+  KUZ01:AddTurnIntoWind(timerecovery_start01,timerecovery_end01,28,false,-9)
+ Message_01 = MESSAGE:New("Kuznetsov is turning, Recovery Window is open from "..timerecovery_start01.." until "..timerecovery_end01.." BRC is "..shipheading01.." deg", 25):ToRed()            
   end end
 menu_recovery_1 = MENU_COALITION_COMMAND:New( coalition.side.RED,"Recovery/15min",Kuznetsov_menu,
  function() KUZ01_WindowTime = 17 
