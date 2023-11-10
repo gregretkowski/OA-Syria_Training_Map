@@ -5,6 +5,8 @@ env.info("Navygroup Loading", false)
 
 local ArcoRoosevelt=RECOVERYTANKER:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Tanker_S3-B_Arco1 #IFF:(12)5017FR")
 ArcoRoosevelt:SetTakeoffCold()
+ArcoRoosevelt:SetRespawnInAir()
+ArcoRoosevelt:SetUnlimitedFuel(true)
 ArcoRoosevelt:SetTACAN(117, "ARC", "X")
 ArcoRoosevelt:SetRadio(317.525, "AM")
 ArcoRoosevelt:SetCallsign(2,1)
@@ -15,12 +17,15 @@ ArcoRoosevelt:Start()
 ----- Lincoln RESCUE HELO -----
 -------------------------------
 
-local RescueheloLincoln=RESCUEHELO:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Rescue_Helo #IFF:(12)5016FR")
+-- Rescue helo needs to be a global variable to prevent it from being garbage collected
+RescueheloLincoln=RESCUEHELO:New(UNIT:FindByName("CVN-72 A. Lincoln"), "Rescue_Helo #IFF:(12)5016FR")
 RescueheloLincoln:SetTakeoffHot()
+RescueheloLincoln:SetRespawnInAir()
 RescueheloLincoln:SetAltitude(60)
 RescueheloLincoln:SetOffsetX(300) --left/right
 RescueheloLincoln:SetOffsetZ(300) --fwd/back
 RescueheloLincoln:Start()
+RescueheloLincoln.helo:CommandSetUnlimitedFuel(true)
 
 -------------------------------
 ----- Tarawa RESCUE HELO -----
