@@ -101,11 +101,12 @@ class Mizlib():
 
         self.logger.info('Wrote miz file to %s' % extracted_filename)
     
-    def doit(self):
+    def doit(self,outdir='.'):
 
         for key,val in self.config.items():
             file_basename = self.filebase(self.miz_file)
-            new_filename = file_basename + "_" + key + ".miz"
+
+            new_filename = outdir + '/' + file_basename + "_" + key + ".miz"
             self.logger.info("Creating New MIZ file %s" % new_filename)
             shutil.copy2(self.miz_file, new_filename)
 
