@@ -1,0 +1,59 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Create Miz Files
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+env:
+  MIZFILE: Syria_Training.miz
+
+permissions:
+  contents: write  # IMPORTANT: mandatory for making GitHub Releases
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Get release name based on date and time
+      id: builddate
+      run: |
+        echo "builddate=$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r pyscripts/requirements.txt
+    - name: Create Dist Dir
+      run: mkdir dist/
+    - name: Create Dist Files
+      run: |
+        python pyscripts/create_missions.py --outdir dist --debug $MIZFILE $builddate
+
+
+    - name: Create GitHub Release
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: >-
+        gh release create
+        $builddate
+        --repo '${{ github.repository }}'
+        --notes ""
+    - name: Upload artifact signatures to GitHub Release
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      # Upload to GitHub Release using the `gh` CLI.
+      # `dist/` contains the built packages, and the
+      # sigstore-produced signatures and certificates.
+      run: >-
+        gh release upload
+        $builddate dist/**
+        --repo '${{ github.repository }}'
