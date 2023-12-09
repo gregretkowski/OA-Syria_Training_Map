@@ -23,9 +23,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Get release name based on date and time
-        id: builddate
-        run: |
-          echo "{builddate}={$(date +'%Y%m%d-%H%M')}" >> $GITHUB_STATE
+      id: builddate
+      run: |
+        echo "{builddate}={$(date +'%Y%m%d-%H%M')}" >> $GITHUB_STATE
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
