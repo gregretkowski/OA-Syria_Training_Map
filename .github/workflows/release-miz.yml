@@ -19,16 +19,13 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-    - name: "Set current date as env variable"
+    - name: Get release name based on date and time
+        id: builddate
         run: |
-          echo "builddate=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
-        id: version  # this is used on variable path
-
+          echo "{builddate}={$(date +'%Y%m%d-%H%M')}" >> $GITHUB_STATE
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -41,7 +38,7 @@ jobs:
       run: mkdir dist/
     - name: Create Dist Files
       run: |
-        python pyscripts/create_missions.py --outdir dist --debug $MIZFILE ${{ steps.version.outputs.builddate }}
+        python pyscripts/create_missions.py --outdir dist --debug $MIZFILE ${{ env.builddate }}
 
 
     - name: Create GitHub Release
@@ -49,7 +46,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       run: >-
         gh release create
-        ${{ steps.version.outputs.builddate }}'
+        ${{ env.builddate }}'
         --repo '${{ github.repository }}'
         --notes ""
     - name: Upload artifact signatures to GitHub Release
@@ -60,5 +57,5 @@ jobs:
       # sigstore-produced signatures and certificates.
       run: >-
         gh release upload
-        '${{ steps.version.outputs.builddate }}' dist/**
+        '${{ env.builddate }}' dist/**
         --repo '${{ github.repository }}'
